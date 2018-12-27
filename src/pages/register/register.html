@@ -1,0 +1,112 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Register</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+    <h2>Register</h2>        
+    <p *ngIf="formIsNotValid" style="color: #ea6153;margin-left: 18px;">
+        {{validationMessages.form}}
+    </p>
+
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item> 
+        <div *ngFor="let validation of validationMessages.name">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('name').hasError(validation.type) && (form.get('name').dirty || form.get('name').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.email">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Phone</ion-label>
+            <ion-input type="text" mask="+99(999) 999-99-99" formControlName="phone"></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.phone">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('phone').hasError(validation.type) && (form.get('phone').dirty || form.get('phone').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input type="text" formControlName="address"></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.address">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('address').hasError(validation.type) && (form.get('address').dirty || form.get('address').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Birth date</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" min="1900" max="2012-01-01" formControlName="birthDate"></ion-datetime>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.birthDate">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('birthDate').hasError(validation.type) && (form.get('birthDate').dirty || form.get('birthDate').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+        <ion-label floating>Gender</ion-label>
+        <ion-select formControlName="gender">
+            <ion-option value="0">Male</ion-option>
+            <ion-option value="1">Female</ion-option>
+            </ion-select>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.gender">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('gender').hasError(validation.type) && (form.get('gender').dirty || form.get('gender').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.password">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+
+        <ion-item>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validationMessages.confirmPassword">
+            <p  style="color: #ea6153;margin-left: 18px;" 
+                *ngIf="form.get('confirmPassword').hasError(validation.type) && (form.get('confirmPassword').dirty || form.get('confirmPassword').touched)">
+                {{ validation.message }}
+            </p>
+        </div>
+        <p *ngIf="isPasswordMismatch" style="color: #ea6153;margin-left: 18px;">
+            {{validationMessages.passwordMismatch}}
+        </p>
+
+        <br><br>
+        <button ion-button (click)="register()">Submit</button>
+    </form>
+</ion-content>
+  

@@ -1,0 +1,11 @@
+{
+  "name": "Flower",
+  "integrations": {},
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:64612"
+    }
+  ]
+}
