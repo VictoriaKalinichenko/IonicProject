@@ -7,22 +7,20 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Ionic2MaskDirective } from "ionic2-mask-directive";
 
-import { RegisterPage } from '../pages/register/register';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from './register/register';
+import { HomePage } from './home/home';
+import { TabsPage } from './tabs/tabs';
+import { LoginPage } from './login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { RequestInterceptor } from './interceptors/request-interceptor';
-import { UserService } from './services/user.service';
+import { RequestInterceptor } from './shared/interceptors/request-interceptor';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    ContactPage,
     HomePage,
     TabsPage,
     RegisterPage,
@@ -39,7 +37,6 @@ import { UserService } from './services/user.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ContactPage,
     RegisterPage,
     HomePage,
     LoginPage,

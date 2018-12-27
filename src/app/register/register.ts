@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterUserView } from '../../app/models/register-user-view';
-import { UserService } from '../../app/services/user.service';
+import { RegisterUserView } from '../shared/models/register-user-view';
+import { UserService } from '../shared/services/user.service';
 import { HomePage } from '../home/home';
 
 @Component({
