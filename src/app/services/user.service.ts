@@ -14,4 +14,8 @@ export class UserService {
     register(view: RegisterUserView) {
         return this.httpClient.post('/api/user/register', view);
     }
+
+    register1(view: RegisterUserView) {
+        return this.httpClient.post('/api/user/register', view);
+    }
 }
