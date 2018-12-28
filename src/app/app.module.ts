@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Ionic2MaskDirective } from "ionic2-mask-directive";
+import { GooglePlus } from "@ionic-native/google-plus";
 
 import { RegisterPage } from './register/register';
 import { HomePage } from './home/home';
@@ -50,6 +51,7 @@ import { UserService } from './shared/services/user.service';
       multi: true
     },
     StatusBar,
+    GooglePlus,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

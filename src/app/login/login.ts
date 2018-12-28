@@ -5,16 +5,19 @@ import { AuthenticateUserView } from '../shared/models/authenticate-user-view';
 import { UserService } from '../shared/services/user.service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
+import { GooglePlus } from "@ionic-native/google-plus";
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers: [GooglePlus]
 })
 export class LoginPage {
   user: AuthenticateUserView;
   form: FormGroup;
   formIsNotValid: boolean = false; 
   serverError: string = "";
+  isLoggedIn: boolean = false;
 
   validationMessages = {
     email: 'Email is required.',
@@ -22,15 +25,16 @@ export class LoginPage {
     form: 'Please, fill in the form correctly'
   };
 
-  constructor(public navCtrl: NavController, private userService: UserService, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private userService: UserService, private googlePlus: GooglePlus, public formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     }); 
+
+    this.user = new AuthenticateUserView();
   }
 
-  authenticate()
-  {
+  authenticate() : void {
     if(!this.form.valid){
       this.formIsNotValid = true;
     }
@@ -52,7 +56,17 @@ export class LoginPage {
     }
   }
 
-  goToRegisterPage() {
+  googleLogin(): void {
+    this.googlePlus.login({})
+      .then(res => {
+        console.log(res);
+        this.user.email = res["email"];
+        this.isLoggedIn = true;
+      })
+      .catch(err => console.error(err));
+  }
+
+  goToRegisterPage() : void {
     this.navCtrl.push(RegisterPage);
   }
 }
