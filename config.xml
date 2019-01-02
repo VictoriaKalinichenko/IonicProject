@@ -17,7 +17,11 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
+<<<<<<< HEAD
     <preference name="SplashScreen" value="assets/imgs/logo.png" />
+=======
+    <preference name="SplashScreen" value="screen" />
+>>>>>>> c5077408f776f6479622b54ae0445199a00d552c
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
