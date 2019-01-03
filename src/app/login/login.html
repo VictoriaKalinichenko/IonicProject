@@ -37,8 +37,13 @@
       <button ion-button (click)="authenticate()">Submit</button>
     </form>
     <p><button ion-button (click)="googleLogin()">Login With Google</button></p>
+    <p><button ion-button (click)="facebookLogin()">Login With Facebook</button></p>
 
-    <div *ngIf="isLoggedIn">
+    <div *ngIf="isLoggedInWithGoogle">
       <p>{{user.email}}</p>
+    </div>
+
+    <div *ngIf="isLoggedInWithFacebook">
+      <p>{{facebookToken}}</p>
     </div>
   </ion-content>

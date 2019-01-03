@@ -6,6 +6,7 @@ import { UserService } from '../shared/services/user.service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { GooglePlus } from "@ionic-native/google-plus";
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-login',
@@ -17,7 +18,9 @@ export class LoginPage {
   form: FormGroup;
   formIsNotValid: boolean = false; 
   serverError: string = "";
-  isLoggedIn: boolean = false;
+  isLoggedInWithGoogle: boolean = false;
+  isLoggedInWithFacebook: boolean = false;
+  facebookToken: string = "";
 
   validationMessages = {
     email: 'Email is required.',
@@ -25,7 +28,13 @@ export class LoginPage {
     form: 'Please, fill in the form correctly'
   };
 
-  constructor(public navCtrl: NavController, private userService: UserService, private googlePlus: GooglePlus, public formBuilder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController, 
+    private userService: UserService, 
+    private googlePlus: GooglePlus, 
+    private facebook: Facebook, 
+    public formBuilder: FormBuilder
+    ) {
     this.form = formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -57,27 +66,26 @@ export class LoginPage {
   }
 
   googleLogin(): void {
-    this.googlePlus.getSigningCertificateFingerprint()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.error(err));
-
-
     this.googlePlus.login({})
-      .then(res => {
-        console.log(res);
-        this.storeEmail(res.email);
-        this.isLoggedIn = true;
+      .then(result => {
+        console.log(result);
+        this.user.email = result.email;
+        this.isLoggedInWithGoogle = true;
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error(error));
+  }
+
+  facebookLogin(): void {
+    this.facebook.login(['email'])
+    .then((result: FacebookLoginResponse) => { 
+      console.log('Logged into Facebook!', result);
+      this.facebookToken = result.authResponse.accessToken;
+      this.isLoggedInWithFacebook = true;
+    })
+    .catch(error => console.log('Error logging into Facebook', error));
   }
 
   goToRegisterPage(): void {
     this.navCtrl.push(RegisterPage);
-  }
-
-  storeEmail(email: string): void {
-    this.user.email = email;
   }
 }

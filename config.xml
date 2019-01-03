@@ -86,6 +86,11 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.265255600993-q9lmknssp8e8cj1g6jcn06125p25e4ne" />
         <variable name="WEB_APPLICATION_CLIENT_ID" value="265255600993-707ns6l6sgd19rgh2cebnkh1q0sdunqu.apps.googleusercontent.com" />
     </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="4.0.0">
+        <variable name="APP_ID" value="294405094756378" />
+        <variable name="APP_NAME" value="IonicProject" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.38.1" />
+    </plugin>
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
