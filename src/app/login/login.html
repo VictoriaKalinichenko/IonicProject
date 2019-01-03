@@ -8,11 +8,11 @@
 
 <ion-content padding>
     <h2>Authentication</h2>
-    <p *ngIf="serverError.length!=0" style="color: #ea6153;margin-left: 18px;">
+    <p *ngIf="serverError.length!=0" class="validation-message">
       {{serverError}}
     </p>
   
-    <p *ngIf="formIsNotValid" style="color: #ea6153;margin-left: 18px;">
+    <p *ngIf="formIsNotValid" class="validation-message">
       {{validationMessages.form}}
     </p>
   
@@ -21,7 +21,7 @@
         <ion-label floating>Email</ion-label>
         <ion-input type="text" formControlName="email"></ion-input>
       </ion-item>
-      <p *ngIf="form.get('email').hasError('required') && form.get('email').touched" style="color: #ea6153;margin-left: 18px;">
+      <p *ngIf="form.get('email').hasError('required') && form.get('email').touched" class="validation-message">
          {{validationMessages.email}}
       </p>
   
@@ -29,7 +29,7 @@
         <ion-label floating>Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>      
       </ion-item>
-      <p *ngIf="form.get('password').hasError('required') && form.get('password').touched" style="color: #ea6153;margin-left: 18px;">
+      <p *ngIf="form.get('password').hasError('required') && form.get('password').touched" class="validation-message">
         {{validationMessages.password}}
       </p>
       

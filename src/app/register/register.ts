@@ -57,40 +57,24 @@ export class RegisterPage {
             birthDate: ['', Validators.required],
             gender: ['', Validators.required],
             password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-            confirmPassword: ['', Validators.compose([Validators.required, Validators.call(
-                (formGroup: FormGroup) => {
-                    if (formGroup.value["password"] != formGroup.value["confirmPassword"])
-                    {
-                        return false;
-                    }
-                })])
-            ]
+            confirmPassword: ['', Validators.compose([Validators.required])]
         });
     }
 
     register(): void
     {
-        if(!this.form.valid){
-            this.formIsNotValid = true;
-        }
+        this.formIsNotValid = true;
+        this.isPasswordMismatch = true;
 
         if(this.form.value["password"] == this.form.value["confirmPassword"]){
             this.isPasswordMismatch = false;
-        }
-
-        if(this.form.value["password"] != this.form.value["confirmPassword"]){
-            this.isPasswordMismatch = true;
         }
 
         if(this.form.valid && !this.isPasswordMismatch){
             this.formIsNotValid = false;
             this.user = this.form.value;
             this.userService.register(this.user)
-                .subscribe(
-                    () => {
-                        this.navCtrl.push(HomePage);
-                    }
-                );
+                .subscribe(() => this.navCtrl.push(HomePage));
         }
     }
 }

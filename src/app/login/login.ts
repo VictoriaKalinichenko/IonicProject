@@ -8,6 +8,10 @@ import { HomePage } from '../home/home';
 import { GooglePlus } from "@ionic-native/google-plus";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -44,24 +48,13 @@ export class LoginPage {
   }
 
   authenticate() : void {
-    if(!this.form.valid){
-      this.formIsNotValid = true;
-    }
+    this.formIsNotValid = true;
 
     if(this.form.valid){
       this.formIsNotValid = false;
       this.user = this.form.value;
       this.userService.authenticate(this.user)
-            .subscribe(
-            (data) => {
-              if (data == "") {
-                this.navCtrl.push(HomePage);
-              }
-              if (data != "") {
-                this.serverError = data.toString();
-              }
-            }
-            );
+        .subscribe(() => this.navCtrl.push(HomePage));
     }
   }
 
@@ -88,4 +81,5 @@ export class LoginPage {
   goToRegisterPage(): void {
     this.navCtrl.push(RegisterPage);
   }
+
 }

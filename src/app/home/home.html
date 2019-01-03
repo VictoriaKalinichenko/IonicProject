@@ -5,36 +5,5 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Authentication</h2>
-  <p *ngIf="serverError.length!=0" style="color: #ea6153;margin-left: 18px;">
-    {{serverError}}
-  </p>
-
-  <p *ngIf="formIsNotValid" style="color: #ea6153;margin-left: 18px;">
-    {{validationMessages.form}}
-  </p>
-
-  <form [formGroup]="form">
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
-    <p *ngIf="form.get('email').hasError('required') && form.get('email').touched" style="color: #ea6153;margin-left: 18px;">
-       {{validationMessages.email}}
-    </p>
-
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>      
-    </ion-item>
-    <p *ngIf="form.get('password').hasError('required') && form.get('password').touched" style="color: #ea6153;margin-left: 18px;">
-      {{validationMessages.password}}
-    </p>
-    
-    <br><br>
-    <button ion-button (click)="authenticate()">Submit</button>
-  </form>
-  
-  <br><br><br><br>
-  <button ion-button outline (click)="goToRegisterPage()">Register</button>
+  <h2>Home</h2>
 </ion-content>
