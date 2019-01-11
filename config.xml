@@ -85,6 +85,7 @@
     <plugin name="cordova-plugin-googleplus" spec="6.0.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.265255600993-q9lmknssp8e8cj1g6jcn06125p25e4ne" />
         <variable name="WEB_APPLICATION_CLIENT_ID" value="265255600993-707ns6l6sgd19rgh2cebnkh1q0sdunqu.apps.googleusercontent.com" />
+        <variable name="SCOPE" value="https://www.googleapis.com/auth/drive.file" />
     </plugin>
     <plugin name="cordova-plugin-facebook4" spec="4.0.0">
         <variable name="APP_ID" value="294405094756378" />

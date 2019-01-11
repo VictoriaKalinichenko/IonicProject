@@ -38,6 +38,7 @@
     </form>
     <p><button ion-button (click)="googleLogin()">Login With Google</button></p>
     <p><button ion-button (click)="facebookLogin()">Login With Facebook</button></p>
+    <p><button ion-button (click)="downloadPdf()">Download PDF</button></p>
 
     <div *ngIf="isLoggedInWithGoogle">
       <p>{{user.email}}</p>

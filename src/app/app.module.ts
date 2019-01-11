@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RequestInterceptor } from './shared/interceptors/request-interceptor';
 import { UserService } from './shared/services/user.service';
+import { GoogleDriveService } from './shared/services/google-drive.service';
+
 
 @NgModule({
   declarations: [
@@ -49,18 +51,15 @@ import { UserService } from './shared/services/user.service';
   ],
   providers: [
     UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestInterceptor,
-      multi: true
-    },
+    GoogleDriveService,
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     StatusBar,
     GooglePlus,
     Facebook,
     File,
     FileOpener,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}
